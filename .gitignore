@@ -1,5 +1,0 @@
-# Dependency directories
-node_modules/
-backend/.env
-backend/node_modules/
-backend/package_lock.json
