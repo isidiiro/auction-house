@@ -21,14 +21,13 @@ const MySchema = new Schema({
   },
   isAdmin:{
     type: Boolean,
-    required: true,
     default: false
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  emailVerified: {
+    type: Boolean,
+    default: false
+  }
+}, {timestamps: true});
 
 const userModel = model("User", MySchema);
 
