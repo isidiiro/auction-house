@@ -1,5 +1,3 @@
-// utils/sendEmail.js
-
 const nodemailer = require("nodemailer");
 
 const config = {
