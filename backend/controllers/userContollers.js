@@ -86,12 +86,67 @@ const verifyOtp = async(req, res) => {
     }
 }
 
-const userLogin = async(req, res) => {
+const sendEmailOtp = async(req, res) => {
+    try{
+        const {user_id} = req.body;
+        const user_exist = await userModel.findById(user_id)
+        if(!user_exist){
+            return res.status(400).json({
+                error: "User doesn't exists"
+            })
+        }
+        if(user_exists.emailVerified){
+            return res.status(400).json({
+              error: "Email already verified",
+            });
+        }
+        const user_exist_otpModel = await otpModel.findOne({user_id});
+        if(user_exist_otpModel){
+            return res.status(400).json({
+                "error": "Your last generated otp is not expired. Try after some time!"
+            })
+        }
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const data = {
+          to: user_exist.email,
+          from: process.env.SENDER_EMAIL,
+          subject: "Otp for Email Verification",
+          text: `The otp given below will expire after 1 hour otp -> ${otp}`,
+        };
+        const retunreddata = await send(data);
+        if (retunreddata.status_code == 400) {
+          return res.status(400).json(retunreddata.error);
+        }
+        const options = { upsert: true, setDefaultsOnInsert: true };
+        const otpdata = new otpModel({
+          user_id,
+          otp,
+          options,
+        });
+        await otpdata.save();
+        return res
+          .status(200)
+          .json("Please check ur email for verification code");
+    } catch(err){
+        res.status(500).json({
+            "error": err
+        })
+    }
+}
 
+const userLogin = async(req, res) => {
+    try{
+        const {email, password} = req.body;
+    } catch(err){
+        return res.status(500).json({
+            error: err
+        })
+    }
 }
 
 module.exports = {
     userSignup,
     userLogin,
-    verifyOtp
+    verifyOtp,
+    sendEmailOtp
 };
