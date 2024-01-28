@@ -1,8 +1,17 @@
+import Navbar from "./components/Navbar"
+import {Routes ,Route} from "react-router-dom"
+import AuctionItems from "./components/AuctionItems"
+
+
 function App() {
   return (
-    <>
-      basic setup
-    </>
+    <div>
+      <Navbar />
+      <AuctionItems />
+      {/* <Routes>
+        <Route path="/" element={ <AuctionItems/>} />
+      </Routes> */}
+    </div>
   );
 }
 
