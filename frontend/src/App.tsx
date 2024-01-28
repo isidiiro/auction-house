@@ -1,17 +1,15 @@
-import Navbar from "./components/Navbar"
-import {Routes ,Route} from "react-router-dom"
-import AuctionItems from "./components/AuctionItems"
-
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AuctionItems from "./components/AuctionItems";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Navbar />
-      <AuctionItems />
-      {/* <Routes>
-        <Route path="/" element={ <AuctionItems/>} />
-      </Routes> */}
-    </div>
+      <Routes>
+        <Route path="/" element={<AuctionItems/>} />
+      </Routes>
+    </Router>
   );
 }
 
