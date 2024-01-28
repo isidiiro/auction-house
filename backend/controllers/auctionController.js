@@ -21,6 +21,8 @@ const addNewAuction = async(req, res) => {
         })
 
         await newAuction.save()
+
+        return res.json("New Auction added")
     } catch (error) {
         res.status(500).json({error})
     }

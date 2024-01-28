@@ -10,8 +10,7 @@ const auctionSchema = new Schema({
         type: String
     },
     image: {
-        type: String,
-        unique: true
+        type: String
     },
     startTime: {
         type: Date,
