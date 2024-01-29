@@ -1,0 +1,30 @@
+.auctions-container{
+    width: 100vw;
+    height: max(100vh, 100%);
+    padding: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill,  27rem);
+    place-items: center;
+    gap: 1rem;
+}
+
+.auction-tile{
+    display: grid;
+    grid-template-columns: 6rem 18fr;
+    gap: 1rem;
+
+    padding: 1rem;
+    border: 2px solid #00b7ff;
+    border-radius: 1rem;
+}
+
+.auction-image {
+    height: 10rem;
+    width: 6rem;
+}
+
+.auction-data {
+    width: max-content;
+}
+
